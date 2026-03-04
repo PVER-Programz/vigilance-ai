@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Ultra-Premium Cyber Palette */
+  --bg-dark: #02040a;
+  --bg-surface: #0a0b14;
+  --accent-cyan: #00f2ff;
+  --accent-purple: #7000ff;
+  --accent-pink: #ff007a;
+  --accent-blue: #0066ff;
+  --success-green: #00ffa3;
+  --warning-yellow: #ffee00;
+  --danger-red: #ff3333;
+
+  --text-primary: #ffffff;
+  --text-secondary: #8b949e;
+  --text-dim: #484f58;
+
+  --glass-bg: rgba(10, 11, 20, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-neon: 0 0 20px rgba(0, 242, 255, 0.3);
+  --shadow-purple: 0 0 20px rgba(112, 0, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: crosshair;
+  /* Adds to the "monitoring" vibe */
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent-cyan), var(--accent-purple));
+  border-radius: 10px;
+}
+
+/* Global Background Effects */
+.vantage-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  pointer-events: none;
+  z-index: -1;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+}
+
+.nebula-blob {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -2;
+  animation: drift 20s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes drift {
+  from {
+    transform: translate(-20%, -20%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(20%, 20%) rotate(360deg);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(1000%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-cyan {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--accent-cyan);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--accent-cyan);
+  }
+}
+
+/* Glossy Panel Styles */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px var(--glass-highlight);
+}
+
+.neon-text {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+}

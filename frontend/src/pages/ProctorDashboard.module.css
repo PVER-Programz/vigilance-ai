@@ -1,0 +1,373 @@
+.dashboardContainer {
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    pointer-events: none;
+    z-index: -1;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+}
+
+.sidebar {
+    width: 300px;
+    background: rgba(10, 11, 20, 0.6);
+    backdrop-filter: blur(40px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+
+.sidebarLogo {
+    padding: 50px 40px;
+}
+
+.logoText {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navItem {
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.navItem:hover {
+    color: var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.navItemActive {
+    color: var(--accent-cyan);
+    background: rgba(0, 242, 255, 0.03);
+}
+
+.navItemActive::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    border-radius: 0 4px 4px 0;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.header {
+    height: 110px;
+    padding: 0 50px;
+    background: rgba(10, 11, 20, 0.4);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.headerStats {
+    display: flex;
+    gap: 50px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.statLabel {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    font-size: 9px;
+    opacity: 0.5;
+}
+
+.statValue {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+}
+
+.healthIndicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.healthGreen {
+    background: var(--success-green);
+    box-shadow: 0 0 15px var(--success-green);
+}
+
+.healthYellow {
+    background: var(--warning-yellow);
+    box-shadow: 0 0 15px var(--warning-yellow);
+}
+
+.healthRed {
+    background: var(--danger-red);
+    box-shadow: 0 0 15px var(--danger-red);
+    animation: pulse 1s infinite;
+}
+
+.gridContainer {
+    padding: 50px;
+    width: 100%;
+}
+
+/* Card Styling for Proctor Dashboard */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: inset 0 0 0 1px var(--glass-highlight);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.cardVideoSection {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #000;
+}
+
+.videoFeed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 30px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.studentInfo h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.studentInfo span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+}
+
+.scoreContainer {
+    text-align: right;
+}
+
+.suspicionScore {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--accent-cyan);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.riskBadge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.highRiskBadge {
+    color: var(--danger-red);
+    background: rgba(255, 51, 51, 0.1);
+}
+
+.midRiskBadge {
+    color: var(--warning-yellow);
+    background: rgba(255, 238, 0, 0.1);
+}
+
+.lowRiskBadge {
+    color: var(--success-green);
+    background: rgba(0, 255, 163, 0.1);
+}
+
+.metricsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.metricBarWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metricLabel {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    font-size: 9px;
+}
+
+.progressBar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    transition: width 1s ease;
+}
+
+.analyzeBtn {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: white;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.analyzeBtn:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    border-color: var(--accent-cyan);
+    font-weight: 800;
+}
+
+/* Right Panel Styles */
+.rightPanels {
+    width: 400px;
+    background: rgba(10, 11, 20, 0.4);
+    backdrop-filter: blur(40px);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.panelTitle {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.eventRow {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eventMeta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    font-size: 9px;
+    opacity: 0.4;
+}
+
+.eventMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+}
